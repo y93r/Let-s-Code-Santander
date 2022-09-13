@@ -1,0 +1,17 @@
+import json
+import requests
+
+# Definir a url para qual vou fazer a chamada:
+url = 'https://v6.exchangerate-api.com/v6/5a5a0dd437de745bc8d037eb/latest/USD'
+
+# Fazer um requisição:
+requisicao = requests.get(url)
+print(f'Sucesso!\n{requisicao.status_code}')
+
+# Recuperando os dados da requisição:
+dados = requisicao.json()
+print(dados)
+
+valor_reais = float(input('Informe o valor em R$ a ser convertido: \nR$ '))
+cotacao = dados['conversion_rates']['BRL']
+print(f'R$ {valor_reais :.2f} em dólar valem U$$ {(valor_reais / cotacao):.2f}')
